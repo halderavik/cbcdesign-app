@@ -58,8 +58,19 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
+  try {
+    const response = await fetch('https://szy47aqxi7.execute-api.us-east-1.amazonaws.com/Prod', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ attributes }),
+    });
+    const result = await response.json();
+    alert(`Sample Size: ${result.sampleSize}. ${result.message}`);
+  } catch (error) {
+    alert('Error! Check the console.');
+    console.error(error);
+  }
+};
 
     try {
       // Basic validation
