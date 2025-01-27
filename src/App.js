@@ -14,7 +14,6 @@ import {
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
-
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
   marginTop: theme.spacing(4),
@@ -58,19 +57,8 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  try {
-    const response = await fetch('https://szy47aqxi7.execute-api.us-east-1.amazonaws.com/Prod', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ attributes }),
-    });
-    const result = await response.json();
-    alert(`Sample Size: ${result.sampleSize}. ${result.message}`);
-  } catch (error) {
-    alert('Error! Check the console.');
-    console.error(error);
-  }
-};
+    setLoading(true);
+    setError('');
 
     try {
       // Basic validation
@@ -78,8 +66,7 @@ function App() {
         throw new Error('Please fill all fields');
       }
 
-      const response = await fetch('https://szy47aqxi7.execute-api.us-east-1.amazonaws.com/Prod',{
-        
+      const response = await fetch('https://szy47aqxi7.execute-api.us-east-1.amazonaws.com/Prod', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ attributes }),
