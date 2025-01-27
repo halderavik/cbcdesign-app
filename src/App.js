@@ -78,7 +78,8 @@ function App() {
         throw new Error('Please fill all fields');
       }
 
-      const response = await fetch('YOUR_API_GATEWAY_INVOKE_URL', {
+      const response = await fetch('https://szy47aqxi7.execute-api.us-east-1.amazonaws.com/Prod',{
+        
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ attributes }),
